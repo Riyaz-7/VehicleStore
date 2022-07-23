@@ -10,7 +10,7 @@ function About() {
             textAlign: "center",
             marginTop: "1.3%",
             marginLeft: "35%",
-            color: "#104c91",
+            //color: "#104c91",
             backgroundColor: "#efc9af",
             width: "16%",
             borderRadius:"3%"
@@ -31,8 +31,10 @@ function About() {
         >
           <p style={{ margin: "1.5%" }}>
             Vehicle Store is completely authorized website where user can view
-            the vehicles availabel ,then can login to cart and buy the vehicles
-            and admin can login to add,remove or update data about the vehicles
+            the vehicles available, they can login to cart, buy the vehicles
+            and admin can login to add,remove or update data of the vehicles.
+
+            Dealers can use this website to add the vehicles and users can order them.
           </p>
           <p style={{ margin: "1.5%" }}>
             OWNERS : RIYAZUDDIN ,SRIRAM

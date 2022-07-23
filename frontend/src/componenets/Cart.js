@@ -1,4 +1,4 @@
-import React, { useContext,useEffect, useState} from "react";
+import React, { useContext,useEffect} from "react";
 import userContext from "../context/users/userContext";
 import VehicleCard from './VehicleCard';
 function Cart() {
@@ -8,7 +8,7 @@ function Cart() {
 
   useEffect(() => {
     getuserdetails();
-  }, []);
+  }, );
 
   return (
     <>
