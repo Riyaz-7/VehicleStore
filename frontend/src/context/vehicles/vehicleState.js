@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const VehicleState = (props) => {
+  // const host = "https://vehiclepro.herokuapp.com";
   const host = "http://localhost:5000";
   const [vehicles, setvehicles] = useState([]);
 
@@ -30,7 +31,7 @@ const VehicleState = (props) => {
   //function to delete vehicle
   const deletevehicle = async (id) => {
     // api
-    const response = await fetch(`${host}/vehicles/deletevehicles/${id}`, {
+    await fetch(`${host}/vehicles/deletevehicles/${id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -60,7 +61,7 @@ const VehicleState = (props) => {
       },
       body: JSON.stringify({ name, Type, cost }),
     });
-    const json = await response.json(); //console.log(json)
+    await response.json();
     let newvehicles = JSON.parse(JSON.stringify(vehicles));
     for (let i = 0; i < vehicles.length; i++) {
       const vehicle = newvehicles[i];

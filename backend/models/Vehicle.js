@@ -2,11 +2,6 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const VehicleSchema = new Schema({
-   user : {
-      type : mongoose.Schema.Types.ObjectId,
-      ref : 'user',
-      default : 0
-   } ,
      name : {
      type : String,
      required : true
@@ -22,10 +17,6 @@ const VehicleSchema = new Schema({
     date :{
         type : Date,
         default : Date.now
-    },
-    issold :{
-        type : Boolean,
-        default : false
     },
     image :{
         type : String

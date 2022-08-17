@@ -8,8 +8,8 @@ export default function AllOrders() {
     const { allordersfunc, allorders } = context;
     useEffect(() => {
       allordersfunc();
-    }, []);
-    console.log(allorders);
+    },);
+    //console.log(allorders);
     let row = 0;
     return (
       <>

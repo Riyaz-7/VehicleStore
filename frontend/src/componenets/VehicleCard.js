@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { useLocation } from "react-router-dom";
 import userContext from "../context/users/userContext";
 import vehicleContext from "../context/vehicles/vehicleContext";
@@ -31,7 +31,7 @@ export default function Vehicles(props) {
 
   const handleOrder = () => {
     ordervehicle(vehicle._id);
-  }
+  };
 
   return (
     <div className="col-md-4 my-3">
@@ -39,7 +39,7 @@ export default function Vehicles(props) {
         <img
           className="card-img-top"
           src={`http://localhost:5000/vehicles/profile/${vehicle.image}`}
-          alt="Card image cap"
+          alt="Card img cap"
         />
         <div className="card-body">
           <div className="d-flex align-items-center">
@@ -61,20 +61,20 @@ export default function Vehicles(props) {
               {localStorage.getItem("admin") !== "1" &&
                 localStorage.getItem("token") !== "null" &&
                 location.pathname !== "/viewuser/Cart" && (
-                  <a
-                    href="#"
-                    onClick={handleaddToCart}
-                    className="btn btn-primary"
-                  >
+                  <button  onClick={handleaddToCart} className="btn btn-primary">
                     Add to cart
-                  </a>
+                  </button>
                 )}
             </div>
             <div className="col">
               {localStorage.getItem("admin") !== "1" &&
                 localStorage.getItem("token") !== "null" &&
                 location.pathname === "/viewuser/Cart" && (
-                  <button href="#" className="btn btn-primary" onClick={handleOrder}>
+                  <button
+                    href="#"
+                    className="btn btn-primary"
+                    onClick={handleOrder}
+                  >
                     proceed to pay {vehicle.cost} $
                   </button>
                 )}
@@ -85,7 +85,11 @@ export default function Vehicles(props) {
             {localStorage.getItem("admin") !== "1" &&
               localStorage.getItem("token") !== "null" &&
               location.pathname === "/viewuser/Cart" && (
-                <button href="#" onClick={handleRemoveFromCart} className="btn btn-primary">
+                <button
+                  href="#"
+                  onClick={handleRemoveFromCart}
+                  className="btn btn-primary"
+                >
                   Remove from cart
                 </button>
               )}

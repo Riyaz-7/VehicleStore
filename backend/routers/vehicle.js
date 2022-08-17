@@ -10,7 +10,7 @@ const upload = require("../middleware/upload");
 //Router1 to get allvehicles user/admin login required
 router.get("/getallvehicles", async (req, res) => {
     try {
-        const vehicles = await Vehicles.find({ issold: false });
+        const vehicles = await Vehicles.find({});
 
         if (vehicles.length <= 0)
             return res.status(404).json({ error: "no vehicles found" });
@@ -45,13 +45,12 @@ router.post(
                 name,
                 Type,
                 cost,
-                user: req.user.id,
                 image: req.file.filename
             });
             const savedvehicle = await vehicle.save();
             res.json({ savedvehicle });
         } catch (error) {
-            console.log(error);
+           // console.log(error);
             res.status(500).json({ error: "something has occured" });
         }
     }
@@ -93,12 +92,12 @@ router.put("/updatevehicle/:id", auth, async (req, res) => {
         );
         res.status(200).json({ vehicle });
     } catch (error) {
-        console.log(error);
+       // console.log(error);
         res.status(500).json({ error: "something has occured" });
     }
 });
 
-//Router3 to delete veicles admin login required
+//Router3 to delete vehicles admin login required
 router.delete("/deletevehicles/:id", auth, async (req, res) => {
     try {
         let userid = req.user.id;
@@ -113,12 +112,12 @@ router.delete("/deletevehicles/:id", auth, async (req, res) => {
         vehicle = await Vehicles.findByIdAndDelete(req.params.id);
         res.json({ sucess: "vehicle deleted", vehicle });
     } catch (error) {
-        console.log(error);
+       // console.log(error);
         res.status(500).json({ error: "something has occured" });
     }
 });
 
-//Router4 search a vehicle admin/user login required
+//Router4 search a vehicle 
 router.post("/searchvehicle", async (req, res) => {
     try {
         const vehicle = await Vehicles.find({ name: req.body.name, issold: false });
@@ -128,20 +127,11 @@ router.post("/searchvehicle", async (req, res) => {
 
         res.status(200).json({ vehicle });
     } catch (error) {
-        console.log(error);
+        //console.log(error);
         return res.status(500).json({ error: "something has occured" });
     }
 });
 
-router.get("/searchvehicle/:id", auth, async (req, res) => {
-    try {
-        const vehicle = await Vehicles.findOne({ _id: req.params.id });
-        res.status(200).json({ vehicle });
-    } catch (error) {
-        console.log(error);
-        return res.status(500).json({ error: "something has occured" });
-    }
-});
 
 //router5 buy a vehicle user login required
 router.post("/buyvehicle/:id", auth, async (req, res) => {
@@ -149,30 +139,17 @@ router.post("/buyvehicle/:id", auth, async (req, res) => {
         const userid = req.user.id;
 
         const vehicle = await Vehicles.findById(req.params.id);
-        vehicle.issold = true;
+        
 
-        vehicle.user = userid;
+       //vehicle.user = userid;
         vehicle.save();
         res.status(200).json({ vehicle });
     } catch (error) {
-        console.log(error);
+        //console.log(error);
         res.status(500).json({ error: "something has occured" });
     }
 });
 
-//vehicles whuch user bought
-router.get("/uservehicles", auth, async (req, res) => {
-    try {
-        const userid = req.user.id;
 
-        const vehicles = await Vehicles.find({ user: userid });
-        if (vehicles.length <= 0)
-            res.status(402).json({ error: "no vehicles bought" });
-        res.status(200).json({ vehicles });
-    } catch (error) {
-        console.log(error);
-        res.status(500).json({ error: "something has occured" });
-    }
-});
 
 module.exports = router;

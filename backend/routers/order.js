@@ -38,7 +38,7 @@ router.post('/orderVehicle/:vid', auth, async (req, res) => {
 
 
     } catch (error) {
-        console.log(error);
+        //console.log(error);
         res.status(404).json({ error: "something occured" });
     }
 })
@@ -64,7 +64,7 @@ router.get('/viewallorders', auth, async (req, res) => {
         res.status(200).json({ allorders });
 
     } catch (error) {
-        console.log(error)
+        //console.log(error)
         res.status(500).json({ error: "some error occurred" })
     }
 })
@@ -76,7 +76,7 @@ router.get('/viewUserorders', auth, async (req, res) => {
         res.status(200).json({ orders });
 
     } catch (error) {
-        console.log(error)
+       // console.log(error)
         res.status(500).json({ error: "some error occurred" })
     }
 })

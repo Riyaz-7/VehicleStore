@@ -28,16 +28,16 @@ router.post("/removefromcart/:pid", auth, async (req, res) => {
     let userid = req.user.id;
     let user = await User.findById(userid);
     let cart = user.cart;
-    console.log(req.params.pid);
+    //console.log(req.params.pid);
     let cartveh = cart.filter((element) => {
       return !(element._id.equals(req.params.pid));
     });
     user.cart = cartveh;
-    console.log(cartveh);
+    //console.log(cartveh);
     await user.save();
     res.status(200).json(user);
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     res.status(400).json({ error: "something occured" });
   }
 });
@@ -50,7 +50,7 @@ router.get("/viewCart", auth, async (req, res) => {
     let cart = user.cart;
     res.status(200).json(cart);
   } catch (error) {
-    console.log(error);
+    //console.log(error);
     res.status(400).json({ error: "something occured" });
   }
 });

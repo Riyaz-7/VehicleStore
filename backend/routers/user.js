@@ -45,7 +45,7 @@ router.post('/signup', body('name', 'min length must be 3').isLength({ min: 3 })
         }
         catch (error) {
             res.status(500).json({ error: "something has occured" })
-            console.log(error)
+           // console.log(error)
         }
     })
 
@@ -73,7 +73,7 @@ router.post('/login', body('email', 'enter valid email').isEmail(), body('passwo
             res.json({ user, authToken })
         }
         catch(error) {
-            console.log(error)
+           // console.log(error)
             res.status(500).json({ error: "something has occured" })
         }
     })
@@ -92,12 +92,7 @@ router.get('/getuser', auth, async (req, res) => {
 
 //Route4 for updating user data
 router.patch('/updateuser',auth,async (req, res) => {
-        //errors of validation
-        // const errors = validationResult(req);
-        // if (!errors.isEmpty()) {
-        //     return res.status(400).json({ errors: errors.array() });
-        // }
-
+       
         try {
             let userid = req.user.id;
             let user = await User.findById(userid)
@@ -114,7 +109,7 @@ router.patch('/updateuser',auth,async (req, res) => {
             await user.save()
             res.status(200).json(user)
         } catch (error) {
-            console.log(error)
+            //console.log(error)
             res.status(500).json({ error: "something has occured" })
         }
     })
